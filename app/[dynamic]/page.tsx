@@ -1,7 +1,6 @@
 export async function generateStaticParams() {
   const clients = await fetch("https://nextjsisrback.onrender.com/clients", {
     next: { revalidate: 1 },
-    cache: "no-store",
   }).then((res) => res.json());
 
   return clients.map(({ client }: { client: string }) => ({
@@ -9,14 +8,14 @@ export async function generateStaticParams() {
   }));
 }
 
-const Page = async ({ params }: any) => {
-  const data = await fetch("https://cat-fact.herokuapp.com/facts", {
-    cache: "force-cache",
-  }).then((res) => res.json());
+const Page = ({ params }: any) => {
+  // const data = fetch("https://cat-fact.herokuapp.com/facts", {
+  //   cache: "force-cache",
+  // }).then((res) => res.json());
 
   return (
     <div className="w-full h-full flex flex-col justify-center align-middle p-3">
-      <h1>{data[0].text}</h1>
+      <h1>{params.dynamic}</h1>
     </div>
   );
 };
