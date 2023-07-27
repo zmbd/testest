@@ -1,6 +1,6 @@
 export async function generateStaticParams() {
   const clients = await fetch("https://nextjsisrback.onrender.com/clients", {
-    next: { revalidate: 1 },
+    next: { revalidate: 60 },
   }).then((res) => res.json());
 
   console.log(clients);
@@ -10,11 +10,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function Page({ params }: any) {
-  // const data = fetch("https://cat-fact.herokuapp.com/facts", {
-  //   cache: "force-cache",
-  // }).then((res) => res.json());
-
+export default async function Page({ params }: any) {
   return (
     <div className="w-full h-full flex flex-col justify-center align-middle p-3">
       <h1>{params.dynamic}</h1>
