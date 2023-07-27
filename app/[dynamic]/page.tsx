@@ -3,8 +3,6 @@ export async function generateStaticParams() {
     next: { revalidate: 60 },
   }).then((res) => res.json());
 
-  console.log(clients);
-
   return clients.map(({ client }: { client: string }) => ({
     dynamic: client,
   }));
