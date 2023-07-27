@@ -1,6 +1,7 @@
 export async function generateStaticParams() {
   const clients = await fetch("https://nextjsisrback.onrender.com/clients", {
-    next: { revalidate: 60 },
+    next: { revalidate: 1 },
+    cache: "no-store",
   }).then((res) => res.json());
 
   return clients.map(({ client }: { client: string }) => ({
