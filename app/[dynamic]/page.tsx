@@ -14,16 +14,22 @@ export async function generateStaticParams() {
     },
   ];
 
-  return clients.map(({ client }) => ({
+  return clients.map(({ client, content }) => ({
     dynamic: client,
+    content,
   }));
 }
 
-const Page = ({ params }: any) => {
-  console.log(params.dynamic);
+const Page = async ({ params }: any) => {
+  const data = await fetch("https://cat-fact.herokuapp.com/facts", {
+    cache: "force-cache",
+  }).then((res) => res.json());
+
+  console.log(data);
+
   return (
     <div className="w-full h-full flex flex-col justify-center align-middle p-3">
-      {/* <h1>{context.params.dynamic}</h1> */}
+      <h1>{data[0].text}</h1>
     </div>
   );
 };
