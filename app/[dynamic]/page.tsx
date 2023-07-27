@@ -1,22 +1,10 @@
 export async function generateStaticParams() {
-  const clients = [
-    {
-      client: "morningstar",
-      content: "Yes, hello, I'm Morningstar",
-    },
-    {
-      client: "apollo",
-      content: "yesyesyeyseyseyse",
-    },
-    {
-      client: "crazy8",
-      content: "crazy 8 DDDDDDDDDD",
-    },
-  ];
+  const clients = await fetch(
+    "https://nextjsisrback.onrender.com/clients"
+  ).then((res) => res.json());
 
-  return clients.map(({ client, content }) => ({
+  return clients.map(({ client }: { client: string }) => ({
     dynamic: client,
-    content,
   }));
 }
 
