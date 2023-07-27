@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const Page = ({ params }: any) => {
+export default function Page({ params }: any) {
   // const data = fetch("https://cat-fact.herokuapp.com/facts", {
   //   cache: "force-cache",
   // }).then((res) => res.json());
@@ -20,6 +20,4 @@ const Page = ({ params }: any) => {
       <h1>{params.dynamic}</h1>
     </div>
   );
-};
-
-export default Page;
+}
